@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Optional: Add a custom banner image or GIF here -->
-<img src="https://via.placeholder.com/800x200/0a0a0a/00ffcc?text=+N+E+X+U+S+-+Empathetic+AI+" alt="Nexus Banner" width="100%">
+<!-- <img src="https://via.placeholder.com/800x200/0a0a0a/00ffcc?text=+N+E+X+U+S+-+Empathetic+AI+" alt="Nexus Banner" width="100%"> -->
 
 # 🌌 N E X U S
 
