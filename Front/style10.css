@@ -1,0 +1,452 @@
+:root {
+    /* Exact Colors from Design */
+    --bg-gradient-top: #3d2470;
+    --bg-gradient-bottom: #5a3d9e;
+    --video-ring: #6850a8;
+    --video-inner: #4a2c8a;
+    --video-glow: rgba(104, 80, 168, 0.6);
+    --btn-bg: #3d3456;
+    --btn-active: #5a4a7a;
+    --text-white: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.9);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Page Wrapper */
+.page-wrapper {
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, var(--bg-gradient-top) 0%, var(--bg-gradient-bottom) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Content Container */
+.content-container {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 1.5rem);
+}
+
+/* Logo Section */
+.logo-section {
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 0.6s ease 0.2s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    height: 45px;
+    width: auto;
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+    filter: brightness(1.1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2) drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
+}
+
+/* Sparkle Icon */
+.sparkle-icon {
+    animation: fadeInScale 0.6s ease 0.4s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.sparkle {
+    width: 20px;
+    height: 20px;
+    color: var(--text-white);
+    animation: sparkleRotate 4s linear infinite;
+}
+
+@keyframes sparkleRotate {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+    }
+}
+
+/* Instruction Text */
+.instruction-text {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.5;
+    animation: fadeIn 0.6s ease 0.6s forwards;
+    opacity: 0;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Video Container */
+.video-container {
+    margin: clamp(1.5rem, 4vw, 2rem) 0;
+    animation: fadeInUp 0.8s ease 0.8s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Video Circle */
+.video-circle {
+    position: relative;
+    width: clamp(200px, 45vw, 260px);
+    height: clamp(200px, 45vw, 260px);
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--video-inner);
+    box-shadow: 
+        0 0 0 8px var(--video-ring),
+        0 20px 60px rgba(0, 0, 0, 0.4);
+    animation: videoFloat 4s ease-in-out infinite;
+}
+
+@keyframes videoFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Video Feed */
+.video-feed {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.video-feed.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Camera Off State */
+.camera-off-state {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: var(--video-inner);
+    z-index: 1;
+}
+
+.camera-off-state.visible {
+    display: flex;
+}
+
+.camera-off-icon {
+    width: clamp(50px, 12vw, 70px);
+    height: clamp(50px, 12vw, 70px);
+    color: rgba(255, 255, 255, 0.6);
+    animation: cameraOffPulse 2s ease-in-out infinite;
+}
+
+@keyframes cameraOffPulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* Video Glow */
+.video-glow {
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle, var(--video-glow) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: glowPulse 3s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* User Message */
+.user-message {
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    font-weight: 400;
+    color: var(--text-white);
+    line-height: 1.4;
+    animation: fadeIn 0.6s ease 1s forwards;
+    opacity: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* Controls Container */
+.controls-container {
+    display: flex;
+    gap: clamp(1.5rem, 4vw, 2rem);
+    align-items: center;
+    justify-content: center;
+    margin-top: clamp(1rem, 3vw, 1.5rem);
+    animation: fadeInUp 0.6s ease 1.2s forwards;
+    opacity: 0;
+}
+
+/* Control Button */
+.control-btn {
+    position: relative;
+    width: clamp(70px, 18vw, 85px);
+    height: clamp(70px, 18vw, 85px);
+    border-radius: 50%;
+    background: var(--btn-bg);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.control-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.5),
+        inset 0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.control-btn.active {
+    background: var(--btn-active);
+}
+
+/* Control Icons */
+.control-icon {
+    width: clamp(32px, 8vw, 38px);
+    height: clamp(32px, 8vw, 38px);
+    color: var(--text-white);
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+/* Mic Icons */
+.mic-icon {
+    opacity: 1;
+}
+
+.mic-off-icon {
+    opacity: 0;
+}
+
+.mic-btn:not(.active) .mic-icon {
+    opacity: 0;
+}
+
+.mic-btn:not(.active) .mic-off-icon {
+    opacity: 1;
+}
+
+/* Camera Icons */
+.camera-icon {
+    opacity: 1;
+}
+
+.camera-off-icon {
+    opacity: 0;
+}
+
+.camera-btn:not(.active) .camera-icon {
+    opacity: 0;
+}
+
+.camera-btn:not(.active) .camera-off-icon {
+    opacity: 1;
+}
+
+/* Button Glow */
+.btn-glow {
+    position: absolute;
+    inset: -15px;
+    background: radial-gradient(circle, rgba(124, 103, 196, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.control-btn:hover .btn-glow {
+    opacity: 1;
+}
+
+.control-btn.active .btn-glow {
+    opacity: 0.8;
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Background Particles Canvas */
+.particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Responsive Design */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .logo {
+        height: 40px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .content-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .logo {
+        height: 36px;
+    }
+    
+    .sparkle {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .instruction-text {
+        font-size: 0.85rem;
+    }
+    
+    .controls-container {
+        gap: 1.25rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 375px) {
+    .logo {
+        height: 32px;
+    }
+    
+    .controls-container {
+        gap: 1rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus States */
+.control-btn:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.4);
+    outline-offset: 6px;
+}
+
+/* Loading State */
+.video-circle.loading::after {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-top-color: var(--text-white);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 3;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

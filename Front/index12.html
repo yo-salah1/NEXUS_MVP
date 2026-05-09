@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - Settings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style12.css">
+</head>
+<body>
+<div class="app-container">
+
+    <!-- ============================================================
+         SIDEBAR — 
+         ============================================================ -->
+          <!-- ===== SIDEBAR — exact copy from page 8 ===== -->
+        <aside class="sidebar" id="sidebar">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i data-lucide="chevrons-right" class="toggle-icon"></i>
+            </button>
+            
+            <a href="index7.html">
+            <nav class="sidebar-nav">
+                <div>
+                    <img src="NEXUS_logo.png" />
+                </div>
+                <br/>
+                <br/>
+                 <a href="index7.html">
+                <div class="nav-item" id="homeNav" data-tooltip="Home">
+                    <i data-lucide="home" class="nav-icon"></i>
+                    <span class="nav-label">Home</span>
+                </div>
+                 </a>
+                <div class="nav-item" id="newChatNav" data-tooltip="New Chat">
+                    <i data-lucide="plus" class="nav-icon"></i>
+                    <span class="nav-label">New Chat</span>
+                </div>
+                 <a href="index10.html">
+                <div class="submenu" id="chatTypeSubmenu">
+                    <div class="submenu-item" id="videoChatBtn" data-tooltip="Video Chat">
+                        <i data-lucide="video" class="submenu-icon"></i>
+                        <span class="submenu-label">Video</span>
+                    </div>
+                    </a>
+                    <a href="index9.html"></a>
+                    <div class="submenu-item" id="audioChatBtn" data-tooltip="Audio Chat">
+                        <i data-lucide="mic" class="submenu-icon"></i>
+                        <span class="submenu-label">Audio</span>
+                    </div>
+                    <a href="index8.html">
+                    <div class="submenu-item" id="textChatBtn" data-tooltip="Text Chat">
+                        <i data-lucide="message-square" class="submenu-icon"></i>
+                        <span class="submenu-label">Text</span>
+                    </div>
+                    </a>
+                </div>
+                <a href="index13.html">
+                <div class="nav-item flex items-center gap-2" id="prompets" data-tooltip="prompets">
+                     <i data-lucide="target" class="nav-icon w-5 h-5"></i>
+                     <span class="nav-label">prompets</span>
+                </div>
+                </a>
+                 <a href="index11.html">
+                <div class="nav-item active" id="historyNav" data-tooltip="History">
+                    <i data-lucide="clock" class="nav-icon"></i>
+                    <span class="nav-label">History</span>
+                </div>
+                </a>
+            </nav>
+              <a href="index12.html">
+            <div class="sidebar-bottom">
+                <div class="nav-item" id="settingsNav" data-tooltip="Settings">
+                    <i data-lucide="settings" class="nav-icon"></i>
+                    <span class="nav-label">Settings</span>
+                </div>
+                </a>
+            </div>
+        </aside>
+
+
+    <!-- ============================================================
+         MAIN — Settings page
+         ============================================================ -->
+    <main class="main-content">
+        <!-- title -->
+        <header class="settings-header">
+            <h1 class="settings-title">Settings</h1>
+        </header>
+
+        <!-- scrollable body -->
+        <div class="settings-scroll">
+
+            <!-- ── AI Sensitivity ── -->
+            <section class="settings-section">
+                <div class="section-heading">
+                    <i data-lucide="sliders" class="section-icon"></i>
+                    <h2 class="section-title">AI Sensitivity</h2>
+                </div>
+
+                <div class="settings-card">
+                    <!-- Adaptive Sensitivity slider -->
+                    <div class="setting-row setting-row--slider">
+                        <div class="setting-row-header">
+                            <span class="setting-label">Adaptive Sensitivity</span>
+                            <span class="setting-value" id="adaptiveVal">75%</span>
+                        </div>
+                        <input type="range" class="range-slider" id="adaptiveSlider" min="0" max="100" value="75">
+                        <p class="setting-desc">How quickly the AI adapts to your mood changes</p>
+                    </div>
+
+                    <div class="setting-divider"></div>
+
+                    <!-- Face Detection Strength pills -->
+                    <div class="setting-row setting-row--pills">
+                        <div class="setting-row-header">
+                            <span class="setting-label">Face Detection<br>Strength</span>
+                            <div class="pill-group" id="faceDetectionGroup">
+                                <button class="pill" data-value="low">Low</button>
+                                <button class="pill" data-value="medium">Medium</button>
+                                <button class="pill active" data-value="high">High</button>
+                            </div>
+                        </div>
+                        <p class="setting-desc">Higher = More detailed facial emotion analysis</p>
+                    </div>
+
+                    <div class="setting-divider"></div>
+
+                    <!-- Tone Weight slider -->
+                    <div class="setting-row setting-row--slider">
+                        <div class="setting-row-header">
+                            <span class="setting-label">Tone Weight</span>
+                            <span class="setting-value" id="toneVal">50%</span>
+                        </div>
+                        <input type="range" class="range-slider" id="toneSlider" min="0" max="100" value="50">
+                    </div>
+
+                    <div class="setting-divider"></div>
+
+                    <!-- Face Weight slider -->
+                    <div class="setting-row setting-row--slider">
+                        <div class="setting-row-header">
+                            <span class="setting-label">Face Weight</span>
+                            <span class="setting-value" id="faceVal">50%</span>
+                        </div>
+                        <input type="range" class="range-slider" id="faceSlider" min="0" max="100" value="50">
+                        <p class="setting-desc">Balance between voice tone and facial expression</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Privacy & Data ── -->
+            <section class="settings-section">
+                <div class="section-heading">
+                    <i data-lucide="lock" class="section-icon"></i>
+                    <h2 class="section-title">Privacy & Data</h2>
+                </div>
+
+                <div class="settings-card">
+                    <!-- Privacy Mode toggle -->
+                    <div class="setting-row setting-row--toggle">
+                        <div class="setting-text">
+                            <span class="setting-label">Privacy Mode</span>
+                            <p class="setting-desc">Don't save session history or transcripts</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="privacyToggle" class="toggle-input">
+                            <span class="toggle-track">
+                                <span class="toggle-thumb"></span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="setting-divider"></div>
+
+                    <!-- Auto Summaries toggle -->
+                    <div class="setting-row setting-row--toggle">
+                        <div class="setting-text">
+                            <span class="setting-label">Auto Summaries</span>
+                            <p class="setting-desc">Generate AI summary after each session</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="summaryToggle" class="toggle-input" checked>
+                            <span class="toggle-track">
+                                <span class="toggle-thumb"></span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Notifications ── -->
+            <section class="settings-section">
+                <div class="section-heading">
+                    <i data-lucide="bell" class="section-icon"></i>
+                    <h2 class="section-title">Notifications</h2>
+                </div>
+
+                <div class="settings-card">
+                    <!-- Mood Alerts toggle -->
+                    <div class="setting-row setting-row--toggle">
+                        <div class="setting-text">
+                            <span class="setting-label">Mood Alerts</span>
+                            <p class="setting-desc">Get notified when mood shifts detected</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="moodToggle" class="toggle-input" checked>
+                            <span class="toggle-track">
+                                <span class="toggle-thumb"></span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="setting-divider"></div>
+
+                    <!-- Daily Check-in toggle -->
+                    <div class="setting-row setting-row--toggle">
+                        <div class="setting-text">
+                            <span class="setting-label">Daily Check-in</span>
+                            <p class="setting-desc">Receive a daily wellness check-in reminder</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="checkinToggle" class="toggle-input" checked>
+                            <span class="toggle-track">
+                                <span class="toggle-thumb"></span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+        </div><!-- end settings-scroll -->
+    </main>
+</div>
+
+<script src="script12.js"></script>
+</body>
+</html>

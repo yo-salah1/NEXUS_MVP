@@ -1,0 +1,462 @@
+:root {
+    /* Exact Colors from Design */
+    --bg-gradient-top: #2d1b5a;
+    --bg-gradient-bottom: #4a2c8a;
+    --orb-purple-outer: #5a3d9e;
+    --orb-purple-inner: #7c5fd9;
+    --orb-glow: rgba(124, 95, 217, 0.6);
+    --button-bg: #3d3456;
+    --button-ring: rgba(124, 103, 196, 0.3);
+    --text-white: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.9);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Page Wrapper */
+.page-wrapper {
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, var(--bg-gradient-top) 0%, var(--bg-gradient-bottom) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Content Container */
+.content-container {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 1.5rem);
+}
+
+/* Logo Section */
+.logo-section {
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 0.6s ease 0.2s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    height: 45px;
+    width: auto;
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+    filter: brightness(1.1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2) drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
+}
+
+/* Sparkle Icon */
+.sparkle-icon {
+    animation: fadeInScale 0.6s ease 0.4s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.sparkle {
+    width: 24px;
+    height: 24px;
+    color: var(--text-white);
+    animation: sparkleRotate 4s linear infinite;
+}
+
+@keyframes sparkleRotate {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+    }
+}
+
+/* Instruction Text */
+.instruction-text {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.5;
+    animation: fadeIn 0.6s ease 0.6s forwards;
+    opacity: 0;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* AI Avatar Container */
+.ai-avatar-container {
+    margin: clamp(1.5rem, 4vw, 2rem) 0;
+    animation: fadeInUp 0.8s ease 0.8s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* AI Avatar */
+.ai-avatar {
+    position: relative;
+    width: clamp(240px, 50vw, 300px);
+    height: clamp(240px, 50vw, 300px);
+    margin: 0 auto;
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Avatar Glow */
+.avatar-glow {
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle, var(--orb-glow) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: glowPulse 3s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* Avatar Image - This creates the purple orb effect */
+.avatar-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 2;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, var(--orb-purple-inner), var(--orb-purple-outer));
+    padding: 15%;
+    box-shadow: 
+        0 0 60px rgba(124, 95, 217, 0.5),
+        inset 0 0 80px rgba(255, 255, 255, 0.08);
+    animation: robotFloat 3s ease-in-out infinite;
+}
+
+@keyframes robotFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.02);
+    }
+}
+
+/* Floating Particles */
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    opacity: 0;
+    animation: particleFloat 3s ease-in-out infinite;
+}
+
+.particle-1 {
+    top: 15%;
+    right: 10%;
+    animation-delay: 0s;
+}
+
+.particle-2 {
+    bottom: 25%;
+    left: 12%;
+    animation-delay: 1s;
+}
+
+.particle-3 {
+    top: 40%;
+    right: 8%;
+    animation-delay: 2s;
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-25px);
+    }
+}
+
+/* User Query */
+.user-query {
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    font-weight: 400;
+    color: var(--text-white);
+    line-height: 1.4;
+    animation: fadeIn 0.6s ease 1s forwards;
+    opacity: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* Voice Button */
+.voice-btn {
+    position: relative;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: clamp(1rem, 3vw, 1.5rem) 0;
+    animation: fadeInScale 0.6s ease 1.2s forwards;
+    opacity: 0;
+}
+
+.voice-btn-inner {
+    position: relative;
+    width: clamp(85px, 20vw, 100px);
+    height: clamp(85px, 20vw, 100px);
+    border-radius: 50%;
+    background: var(--button-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.voice-btn:hover .voice-btn-inner {
+    transform: scale(1.05);
+    box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.5),
+        inset 0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+.voice-btn:active .voice-btn-inner {
+    transform: scale(0.95);
+}
+
+.voice-btn.active .voice-btn-inner {
+    background: linear-gradient(135deg, #6d5aa0, #8b7dd8);
+    animation: buttonPulse 2s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Mic Icon */
+.mic-icon {
+    width: clamp(34px, 8vw, 40px);
+    height: clamp(34px, 8vw, 40px);
+    color: var(--text-white);
+    position: relative;
+    z-index: 2;
+}
+
+.voice-btn.active .mic-icon {
+    animation: micPulse 1s ease-in-out infinite;
+}
+
+@keyframes micPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Voice Ripple */
+.voice-ripple {
+    position: absolute;
+    inset: -2px;
+    border: 2px solid var(--button-ring);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.voice-btn.active .voice-ripple {
+    animation: rippleExpand 2s ease-out infinite;
+}
+
+.ripple-2 {
+    animation-delay: 1s;
+}
+
+@keyframes rippleExpand {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+/* Status Text */
+.status-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    animation: fadeIn 0.6s ease 1.4s forwards;
+    opacity: 0;
+}
+
+/* Background Particles Canvas */
+.particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Responsive Design */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .logo {
+        height: 40px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .content-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .logo {
+        height: 36px;
+    }
+    
+    .sparkle {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .instruction-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 375px) {
+    .logo {
+        height: 32px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus States */
+.voice-btn:focus-visible {
+    outline: none;
+}
+
+.voice-btn:focus-visible .voice-btn-inner {
+    outline: 3px solid rgba(255, 255, 255, 0.4);
+    outline-offset: 6px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

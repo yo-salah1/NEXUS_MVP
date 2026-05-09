@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Animation</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="loading-container">
+        <div class="spinner-wrapper">
+            <svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+               <img src="page1icon(1).png" alt="Loading icon" class="spinner" >
+            
+            <!-- Glow effect -->
+            <div class="glow-effect"></div>
+        </div>
+        
+        <!-- Optional loading text -->
+        <!-- <div class="loading-text">
+            <p class="loading-label">Loading</p>
+            <div class="loading-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- Custom Script -->
+    <script src="script1.js"></script>
+    <script>
+    
+    setTimeout(function() {
+        window.location.href = "index7.html"; 
+    }, 3000);
+</script>
+</body>
+</html>

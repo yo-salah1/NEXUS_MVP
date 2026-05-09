@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - Voice</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style8.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        .voice-main {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ── LEFT ── */
+        .voice-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            position: relative;
+            padding: 32px;
+        }
+
+        /* Avatar ring */
+        .avatar-ring {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .avatar-ring svg.ring-svg {
+            position: absolute;
+            inset: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            animation: spin-slow 12s linear infinite;
+        }
+        @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+        .glow-circle {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,58,237,0.4) 0%, transparent 70%);
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+        @keyframes glow-pulse {
+            0%,100% { transform: scale(1); opacity: 0.6; }
+            50%      { transform: scale(1.15); opacity: 1; }
+        }
+
+        .avatar-img {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 0 24px rgba(124,58,237,0.6));
+            transition: transform 0.3s ease;
+        }
+        .avatar-img.speaking {
+            animation: avatar-bounce 0.5s ease-in-out infinite alternate;
+        }
+        @keyframes avatar-bounce {
+            from { transform: translateY(0) scale(1); }
+            to   { transform: translateY(-8px) scale(1.04); }
+        }
+
+        .voice-hint {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.5px;
+        }
+
+        .voice-query {
+            font-family: 'Sora', sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            max-width: 420px;
+            line-height: 1.55;
+            min-height: 26px;
+        }
+
+        /* ── MIC + WAVEFORM ── */
+        .mic-wrap {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Waveform bars */
+        .waveform {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            height: 40px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .waveform.active { opacity: 1; }
+
+        .wave-bar {
+            width: 3px;
+            border-radius: 99px;
+            background: #a78bfa;
+            transform: scaleY(0.3);
+        }
+        .waveform.active .wave-bar {
+            animation: wave-dance 0.7s ease-in-out infinite alternate;
+        }
+
+        /* Left waveform */
+        #waveLeft .wave-bar:nth-child(1) { height: 10px; animation-delay: 0.0s; }
+        #waveLeft .wave-bar:nth-child(2) { height: 20px; animation-delay: 0.15s; }
+        #waveLeft .wave-bar:nth-child(3) { height: 30px; animation-delay: 0.05s; }
+        #waveLeft .wave-bar:nth-child(4) { height: 22px; animation-delay: 0.2s; }
+
+        /* Right waveform (mirror) */
+        #waveRight .wave-bar:nth-child(1) { height: 22px; animation-delay: 0.2s; }
+        #waveRight .wave-bar:nth-child(2) { height: 30px; animation-delay: 0.05s; }
+        #waveRight .wave-bar:nth-child(3) { height: 20px; animation-delay: 0.15s; }
+        #waveRight .wave-bar:nth-child(4) { height: 10px; animation-delay: 0.0s; }
+
+        @keyframes wave-dance {
+            from { transform: scaleY(0.2); opacity: 0.4; }
+            to   { transform: scaleY(1);   opacity: 1; }
+        }
+
+        .mic-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mic-btn {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+            box-shadow: 0 0 0 0 rgba(124,58,237,0.5);
+            transition: transform 0.2s, background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mic-btn:hover { transform: scale(1.06); }
+        .mic-btn svg { color: white; width: 30px; height: 30px; }
+
+        .mic-btn.listening {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            animation: mic-ring 1.2s ease-in-out infinite;
+        }
+        @keyframes mic-ring {
+            0%   { box-shadow: 0 0 0 0   rgba(220,38,38,0.7); }
+            70%  { box-shadow: 0 0 0 20px rgba(220,38,38,0);   }
+            100% { box-shadow: 0 0 0 0   rgba(220,38,38,0);    }
+        }
+
+        .mic-label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Status pill */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 99px;
+            padding: 5px 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            color: rgba(255,255,255,0.45);
+            min-height: 28px;
+            transition: all 0.3s;
+        }
+        .status-pill.active {
+            background: rgba(124,58,237,0.15);
+            border-color: rgba(124,58,237,0.4);
+            color: rgba(255,255,255,0.75);
+        }
+        .status-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            flex-shrink: 0;
+        }
+        .status-pill.active .status-dot {
+            background: #a78bfa;
+            animation: dot-blink 1s infinite;
+        }
+        @keyframes dot-blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+        /* ── RIGHT ── */
+        .voice-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 28px 20px 28px 0;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .voice-panel::-webkit-scrollbar { display: none; }
+
+        .panel-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 20px;
+            padding: 20px;
+            transition: border-color 0.4s, background 0.4s;
+        }
+        .panel-card.highlight {
+            background: rgba(124,58,237,0.1);
+            border-color: rgba(124,58,237,0.35);
+        }
+
+        .card-label {
+            font-family: 'Sora', sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 12px;
+        }
+
+        .emotion-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1;
+            color: #9ca3af;
+            transition: color 0.4s;
+        }
+        .emotion-conf {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            margin: 4px 0 16px;
+        }
+
+        .prob-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 6px 0;
+        }
+        .prob-lbl {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            color: rgba(255,255,255,0.55);
+            width: 54px;
+            flex-shrink: 0;
+        }
+        .prob-track {
+            flex: 1;
+            height: 5px;
+            background: rgba(255,255,255,0.07);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+        .prob-fill {
+            height: 100%;
+            border-radius: 99px;
+            transition: width 0.6s cubic-bezier(.16,1,.3,1);
+        }
+        .prob-pct {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 10px;
+            color: rgba(255,255,255,0.35);
+            width: 28px;
+            text-align: right;
+        }
+
+        .ai-response-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+            min-height: 20px;
+        }
+        .ai-cursor {
+            display: inline-block;
+            width: 2px; height: 14px;
+            background: #a78bfa;
+            margin-left: 2px;
+            vertical-align: middle;
+            animation: cursor-blink 1s infinite;
+        }
+        @keyframes cursor-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        .idle-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
+            opacity: 0.3;
+            padding: 40px 20px;
+        }
+        .idle-card svg { width: 36px; height: 36px; color: rgba(255,255,255,0.5); }
+        .idle-card p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        #particleCanvas {
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+
+    <!-- ══ SIDEBAR ══ -->
+    <aside class="sidebar" id="sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle">
+            <i data-lucide="chevrons-right" class="toggle-icon"></i>
+        </button>
+        <nav class="sidebar-nav">
+            <div><img src="NEXUS_logo.png" /></div>
+            <br/><br/>
+            <a href="index7.html">
+                <div class="nav-item" id="homeNav" data-tooltip="Home">
+                    <i data-lucide="home" class="nav-icon"></i>
+                    <span class="nav-label">Home</span>
+                </div>
+            </a>
+            <div class="nav-item" id="newChatNav" data-tooltip="New Chat">
+                <i data-lucide="plus" class="nav-icon"></i>
+                <span class="nav-label">New Chat</span>
+            </div>
+            <div class="submenu" id="chatTypeSubmenu">
+                <a href="index10.html">
+                    <div class="submenu-item" data-tooltip="Video Chat">
+                        <i data-lucide="video" class="submenu-icon"></i>
+                        <span class="submenu-label">Video</span>
+                    </div>
+                </a>
+                <a href="index9.html">
+                    <div class="submenu-item active" data-tooltip="Audio Chat">
+                        <i data-lucide="mic" class="submenu-icon"></i>
+                        <span class="submenu-label">Audio</span>
+                    </div>
+                </a>
+                <a href="index8.html">
+                    <div class="submenu-item" data-tooltip="Text Chat">
+                        <i data-lucide="message-square" class="submenu-icon"></i>
+                        <span class="submenu-label">Text</span>
+                    </div>
+                </a>
+            </div>
+            <a href="index13.html">
+                <div class="nav-item" data-tooltip="Prompts">
+                    <i data-lucide="target" class="nav-icon"></i>
+                    <span class="nav-label">Prompts</span>
+                </div>
+            </a>
+            <a href="index11.html">
+                <div class="nav-item" id="historyNav" data-tooltip="History">
+                    <i data-lucide="clock" class="nav-icon"></i>
+                    <span class="nav-label">History</span>
+                </div>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="index12.html">
+                <div class="nav-item" data-tooltip="Settings">
+                    <i data-lucide="settings" class="nav-icon"></i>
+                    <span class="nav-label">Settings</span>
+                </div>
+            </a>
+        </div>
+    </aside>
+
+    <!-- ══ MAIN ══ -->
+    <main class="voice-main">
+        <canvas id="particleCanvas"></canvas>
+
+        <!-- LEFT -->
+        <div class="voice-center">
+            <div class="avatar-ring">
+                <svg class="ring-svg" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="120" cy="120" r="110" stroke="url(#rg)" stroke-width="1.5" stroke-dasharray="8 6" opacity="0.4"/>
+                    <defs>
+                        <linearGradient id="rg" x1="0" y1="0" x2="240" y2="240" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#7c3aed"/>
+                            <stop offset="100%" stop-color="#4f46e5" stop-opacity="0"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="glow-circle"></div>
+                <img src="avatar.png" alt="NEXUS" class="avatar-img" id="avatarImg">
+            </div>
+
+            <p class="voice-hint">Press mic · speak · release</p>
+            <p class="voice-query" id="userQuery">What's on your mind?</p>
+
+            <!-- Mic + Waveform -->
+            <div class="mic-wrap">
+                <div class="waveform" id="waveLeft">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+
+                <div class="mic-center">
+                    <button class="mic-btn" id="voiceBtn">
+                        <i data-lucide="mic"></i>
+                    </button>
+                    <span class="mic-label" id="micLabel">tap to speak</span>
+                </div>
+
+                <div class="waveform" id="waveRight">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </div>
+
+            <div class="status-pill" id="statusPill">
+                <span class="status-dot"></span>
+                <span id="statusText">Ready</span>
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="voice-panel" id="voicePanel">
+            <div class="idle-card" id="idleCard">
+                <i data-lucide="audio-lines"></i>
+                <p>Results will appear here<br>after you speak</p>
+            </div>
+
+            <div class="panel-card" id="emotionCard" style="display:none">
+                <div class="card-label">Detected Emotion</div>
+                <div class="emotion-name" id="emotionName">—</div>
+                <div class="emotion-conf" id="emotionConf"></div>
+                <div id="probBars"></div>
+            </div>
+
+            <div class="panel-card highlight" id="aiCard" style="display:none">
+                <div class="card-label">NEXUS Response</div>
+                <div class="ai-response-text" id="aiText"></div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="script9.js"></script>
+</body>
+</html>

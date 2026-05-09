@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - AI Chat</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style8.css">
+</head>
+<body>
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Sidebar Toggle (Mobile) -->
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i data-lucide="chevrons-right" class="toggle-icon"></i>
+            </button>
+            
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar-nav">
+                <div>
+                    <img src="NEXUS_logo.png" />
+                </div>
+                <br/>
+                <br/>
+                <!-- <br/> -->
+
+                <!-- Home -->
+                 <a href="index7.html">
+                <div class="nav-item" id="homeNav" data-tooltip="Home">
+                    <i data-lucide="home" class="nav-icon"></i>
+                    <span class="nav-label">Home</span>
+                </div>
+                </a>
+                
+                <!-- New Chat -->
+                <div class="nav-item" id="newChatNav" data-tooltip="New Chat">
+                    <i data-lucide="plus" class="nav-icon"></i>
+                    <span class="nav-label">New Chat</span>
+                </div>
+                
+                <!-- Chat Type Submenu (appears under New Chat when active) -->
+                 <a href="index10.html">
+                <div class="submenu" id="chatTypeSubmenu">
+                    <div class="submenu-item" id="videoChatBtn" data-tooltip="Video Chat">
+                        <i data-lucide="video" class="submenu-icon"></i>
+                        <span class="submenu-label">Video</span>
+                    </div>
+                    </a>
+                    <a href="index9.html">
+                    <div class="submenu-item" id="audioChatBtn" data-tooltip="Audio Chat">
+                        <i data-lucide="mic" class="submenu-icon"></i>
+                        <span class="submenu-label">Audio</span>
+                    </div>
+                    </a>
+                    <a href="index8.html">
+                    <div class="submenu-item" id="textChatBtn" data-tooltip="Text Chat">
+                        <i data-lucide="message-square" class="submenu-icon"></i>
+                        <span class="submenu-label">Text</span>
+                    </div>
+                    </a>
+                </div>
+                 <a href="index13.html">
+                <div class="nav-item flex items-center gap-2" id="prompets" data-tooltip="prompets">
+                     <i data-lucide="target" class="nav-icon w-5 h-5"></i>
+                     <span class="nav-label">prompets</span>
+                </div>
+                </a>
+                
+                <!-- History -->
+                 <a href="index11.html">
+                <div class="nav-item" id="historyNav" data-tooltip="History">
+                    <i data-lucide="clock" class="nav-icon"></i>
+                    <span class="nav-label">History</span>
+                </div>
+                </a>
+            </nav>
+            
+            <!-- Settings (Bottom) -->
+             
+            <div class="sidebar-bottom">
+                <a href="index12.html">
+                <div class="nav-item" id="settingsNav" data-tooltip="Settings">
+                    <i data-lucide="settings" class="nav-icon"></i>
+                    <span class="nav-label">Settings</span>
+                </div>
+                </a>
+            </div>
+        </aside>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="chat-header">
+                <!-- Logo Section -->
+                <div class="logo-section">
+                    <!-- Replace 'nexus-logo.png' with your actual logo filename -->
+                    <img src="NEXUS_logo.png" alt="NEXUS" class="logo">
+                </div>
+            </header>
+            
+            <!-- Chat Container -->
+            <div class="chat-container" id="chatContainer">
+                <!-- Chat Messages Area -->
+                <div class="messages-area" id="messagesArea">
+                    <!-- Welcome Screen -->
+                    <div class="welcome-screen" id="welcomeScreen">
+                        <!-- AI Avatar -->
+                        <div class="ai-avatar-container">
+                            <div class="ai-avatar">
+                                <!-- Replace 'ai-avatar.png' with your actual AI avatar filename -->
+                                <img src="avatar.png" alt="AI Assistant" class="avatar-image">
+                                <div class="avatar-glow"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Welcome Message -->
+                        <div class="welcome-message">
+                            <h1 class="welcome-title">How can I help you?</h1>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Messages (will be populated dynamically) -->
+                    <div class="chat-messages" id="chatMessages">
+                        
+                        <!-- Messages will be added here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input Area -->
+            <div class="input-area">
+                <div class="input-container">
+                    <input 
+                        type="text" 
+                        class="chat-input" 
+                        id="chatInput" 
+                        placeholder="How can I do about that ....."
+                        autocomplete="off"
+                    >
+                    <button class="send-btn" id="sendBtn">
+                        <i data-lucide="send" class="send-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="script8.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - AI Help & Support</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style14.css">
+</head>
+<body>
+<div class="app-container">
+
+    <!-- ============================================================
+         SIDEBAR — exact copy from page 8
+         ============================================================ -->
+          <aside class="sidebar" id="sidebar">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i data-lucide="chevrons-right" class="toggle-icon"></i>
+            </button>
+            
+            <a href="index7.html">
+            <nav class="sidebar-nav">
+                <div>
+                    <img src="NEXUS_logo.png" />
+                </div>
+                <br/>
+                <br/>
+                <a href="index7.html">
+                <div class="nav-item" id="homeNav" data-tooltip="Home">
+                    <i data-lucide="home" class="nav-icon"></i>
+                    <span class="nav-label">Home</span>
+                </div>
+                 </a>
+                <div class="nav-item" id="newChatNav" data-tooltip="New Chat">
+                    <i data-lucide="plus" class="nav-icon"></i>
+                    <span class="nav-label">New Chat</span>
+                </div>
+                 <a href="index10.html">
+                <div class="submenu" id="chatTypeSubmenu">
+                    <div class="submenu-item" id="videoChatBtn" data-tooltip="Video Chat">
+                        <i data-lucide="video" class="submenu-icon"></i>
+                        <span class="submenu-label">Video</span>
+                    </div>
+                    </a>
+                    <a href="index9.html"></a>
+                    <div class="submenu-item" id="audioChatBtn" data-tooltip="Audio Chat">
+                        <i data-lucide="mic" class="submenu-icon"></i>
+                        <span class="submenu-label">Audio</span>
+                    </div>
+                    <a href="index8.html">
+                    <div class="submenu-item" id="textChatBtn" data-tooltip="Text Chat">
+                        <i data-lucide="message-square" class="submenu-icon"></i>
+                        <span class="submenu-label">Text</span>
+                    </div>
+                    </a>
+                </div>
+                <a href="index13.html">
+                <div class="nav-item flex items-center gap-2" id="prompets" data-tooltip="prompets">
+                     <i data-lucide="target" class="nav-icon w-5 h-5"></i>
+                     <span class="nav-label">prompets</span>
+                </div>
+                </a>
+                 <a href="index11.html">
+                <div class="nav-item active" id="historyNav" data-tooltip="History">
+                    <i data-lucide="clock" class="nav-icon"></i>
+                    <span class="nav-label">History</span>
+                </div>
+                </a>
+            </nav>
+              <a href="index12.html">
+            <div class="sidebar-bottom">
+                <div class="nav-item" id="settingsNav" data-tooltip="Settings">
+                    <i data-lucide="settings" class="nav-icon"></i>
+                    <span class="nav-label">Settings</span>
+                </div>
+                </a>
+            </div>
+        </aside>
+
+    <!-- ============================================================
+         MAIN — AI Help & Support
+         ============================================================ -->
+    <main class="main-content">
+        <!-- Page title -->
+        <header class="help-header">
+            <h1 class="help-title">AI Help & Support</h1>
+        </header>
+
+        <!-- Scrollable body -->
+        <div class="help-body">
+
+            <!-- Smart FAQs -->
+            <section class="help-section">
+                <div class="section-heading">
+                    <i data-lucide="help-circle" class="section-icon"></i>
+                    <h2 class="section-title">Smart FAQs</h2>
+                    <span class="section-badge">AI Suggested</span>
+                </div>
+
+                <div class="faq-list" id="faqList">
+                    <!-- FAQ items injected by JS -->
+                </div>
+            </section>
+
+            <!-- AI Chat Support -->
+            <section class="help-section">
+                <div class="section-heading">
+                    <i data-lucide="message-circle" class="section-icon-chat"></i>
+                    <h2 class="section-title">AI Chat Support</h2>
+                </div>
+
+                <div class="chat-widget">
+                    <div class="chat-widget-header">
+                        <span>Always ready to help you</span>
+                    </div>
+                    <div class="chat-preview">
+                        <div class="chat-bubble">
+                            <i data-lucide="bot" class="chat-bot-icon"></i>
+                            <span class="chat-bubble-text">Hi! I'm your AI assistant. How can I help you today?</span>
+                        </div>
+                        <div class="typing-indicator">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <span class="typing-text">AI is typing...</span>
+                        </div>
+                    </div>
+                    <a href="index8.html">
+                    <button class="chat-start-btn" id="chatStartBtn">
+                        <i data-lucide="message-circle" class="btn-icon"></i>
+                        <span>Start Chat with AI</span>
+                    </button>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Send Feedback -->
+            <section class="help-section">
+                <div class="section-heading">
+                    <i data-lucide="send" class="section-icon-feedback"></i>
+                    <h2 class="section-title">Send Feedback</h2>
+                </div>
+
+                <div class="feedback-widget">
+                    <p class="feedback-desc">Help us improve our AI by sharing your thoughts and suggestions</p>
+                    <textarea 
+                        class="feedback-textarea" 
+                        id="feedbackTextarea"
+                        placeholder="Tell us what you think about our AI assistant..."
+                        rows="5"
+                    ></textarea>
+                    <button class="feedback-submit-btn" id="feedbackSubmitBtn">
+                        <i data-lucide="send" class="btn-icon"></i>
+                        <span>Submit Feedback</span>
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>
+
+<script src="script14.js"></script>
+</body>
+</html>

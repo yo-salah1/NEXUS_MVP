@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - AI Voice Assistant</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style7.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Sign Up / Sign In Button (Top Right) -->
+        <div class="auth-container">
+            <a href="index2.html">
+            <button class="auth-btn" id="authBtn">
+                <i data-lucide="user-circle" class="auth-icon"></i>
+                <span class="auth-text">Sign Up / Sign In</span>
+            </button>
+            </a>
+        </div>
+        
+        <div class="main-container">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <img src="NEXUS_logo.png" alt="NEXUS" class="logo">
+            </div>
+            
+            <!-- Subtitle -->
+            <p class="page-subtitle">
+                Talk or video call. I'll understand your mood.
+            </p>
+            
+            <!-- Voice Orb -->
+            <div class="voice-orb-container">
+                <div class="orb-wrapper" id="voiceOrb">
+                    <div class="orb-glow"></div>
+                    <div class="orb-inner">
+                        <div class="orb-wave wave-1"></div>
+                        <div class="orb-wave wave-2"></div>
+                        <div class="orb-wave wave-3"></div>
+                        <canvas id="waveformCanvas" class="waveform-canvas"></canvas>
+                    </div>
+                </div>
+                <p class="orb-status" id="orbStatus">Ready to listen...</p>
+            </div>
+            
+            <!-- Main Action Buttons -->
+            <div class="action-buttons">
+                
+                <a href="index8.html" class="action-btn text-chat-btn  btn-title  btn-subtitle" id="textChatBtn" >
+                <button >
+                    <i data-lucide="message-square" class="btn-icon"></i>
+                    <div class="btn-content" >
+                        </b>
+                        <span class="btn-title"></b>Text Chat</span>
+                        </b>
+                        <span class="btn-subtitle">Text only</span>
+                    </div>
+                </button>
+                </a>
+                <a href="index9.html" class="action-btn text-chat-btn  btn-title  btn-subtitle" id="textChatBtn" >
+                <button >
+                    <i data-lucide="phone" class="btn-icon"></i>
+                    <div class="btn-content">
+                        <span class="btn-title">Voice Call</span>
+                        <span class="btn-subtitle">Voice only</span>
+                    </div>
+                </button>
+                </a>
+                <a href="index10.html" class="action-btn text-chat-btn  btn-title  btn-subtitle" id="textChatBtn" >
+                <button >
+                    <i data-lucide="video" class="btn-icon"></i>
+                    <div class="btn-content">
+                        <span class="btn-title">Video Call</span>
+                        <span class="btn-subtitle">Video only</span>
+                    </div>
+                </button>
+                </a>
+            </div>
+            
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <a href="index11.html" class="action-btn  nav-btn  btn-subtitle" id="textChatBtn" >
+                <button class="" id="settingsBtn">
+                    <i data-lucide="clock" class="nav-icon"></i>
+                    <span class="nav-label">History</span>
+                </button>
+                </a>
+                <a href="index12.html" class="action-btn  nav-btn  btn-subtitle" id="textChatBtn" >
+                <button class="" id="settingsBtn">
+                    <i data-lucide="settings" class="nav-icon"></i>
+                    <span class="nav-label">Settings</span>
+                </button>
+                </a>
+                 <a href="index13.html" class="action-btn  nav-btn  btn-subtitle" id="textChatBtn" >
+                <button class="" id="prompetsBtn">
+                    <i data-lucide="target" class="nav-icon"></i>
+                    <span class="nav-label">prompets</span>
+                </button>
+                </a>
+                <a href="index14.html" class="action-btn  nav-btn  btn-subtitle" id="textChatBtn">
+                <button class="" id="helpBtn">
+                    <i data-lucide="help-circle" class="nav-icon"></i>
+                    <span class="nav-label">Help</span>
+                </button>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Floating Particles -->
+        <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="script7.js"></script>
+</body>
+</html>

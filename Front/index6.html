@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - OTP Verification</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style6.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="otp-container">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                
+                <img src="NEXUS_logo.png" alt="NEXUS" class="logo">
+            </div>
+            
+            <!-- Icon/Avatar -->
+            <div class="icon-section">
+                <div class="icon-wrapper">
+                    <img src="page1icon(1).png" alt="Icon" class="main-icon">
+                </div>
+            </div>
+            
+            <!-- Heading -->
+            <h1 class="page-title">OTP with phone</h1>
+            
+            <!-- Subtitle -->
+            <p class="page-subtitle">
+                You'll get smarter responses and can upload files,<br class="desktop-only">
+                images and more
+            </p>
+            
+            <!-- OTP Form -->
+            <form class="otp-form" id="otpForm">
+                <!-- OTP Input Boxes -->
+                <div class="otp-inputs" id="otpInputs">
+                    <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="0">
+                    <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="1">
+                    <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="2">
+                    <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="3">
+                    <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="4">
+                    <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off" data-index="5">
+                </div>
+                
+                <!-- Continue Button -->
+                 <a href="index8.html">
+                <button type="submit" class="btn btn-primary" id="continueBtn">
+                    <span class="btn-text">Continue</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                </a>
+                <!-- Resend OTP Link -->
+                <div class="resend-section">
+                    <p class="resend-text">
+                        If you didn't get the otp you can sent again by 
+                        <button type="button" class="resend-link" id="resendBtn">press here</button>
+                    </p>
+                </div>
+            </form>
+            
+            <!-- Timer Display -->
+            <div class="timer-display" id="timerDisplay">
+                <p class="timer-text">Resend available in <span class="timer-countdown" id="timerCountdown">60</span>s</p>
+            </div>
+        </div>
+        
+        <!-- Floating Particles -->
+        <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="script6.js"></script>
+</body>
+</html>

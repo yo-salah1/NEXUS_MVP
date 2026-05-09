@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - Log In</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="login-container">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                
+                <img src="NEXUS_logo.png" alt="NEXUS" class="logo">
+            </div>
+            
+            <!-- Icon/Avatar -->
+            <div class="icon-section">
+                <div class="icon-wrapper">
+                   
+                    <img src="page1icon(1).png" alt="Icon" class="main-icon">
+                </div>
+            </div>
+            
+            <!-- Heading -->
+            <h1 class="page-title">Log in</h1>
+            
+            <!-- Subtitle -->
+            <p class="page-subtitle">
+                You'll get smarter responses and can upload files,<br class="desktop-only">
+                images and more
+            </p>
+            
+            <!-- Login Form -->
+            <form class="login-form" id="loginForm">
+                <!-- Email Input -->
+                <div class="input-wrapper">
+                    <input 
+                        type="email" 
+                        id="emailInput" 
+                        class="form-input" 
+                        placeholder="your gmail@gmail.com"
+                        required
+                        autocomplete="email"
+                    >
+                </div>
+                
+                <!-- Continue Button -->
+                <button type="submit" class="btn btn-primary" id="continueBtn">
+                    <span class="btn-text">Continue</span>
+                    <div class="btn-ripple"></div>
+                </button>
+            </form>
+            
+            <!-- Divider -->
+            <div class="divider">
+                <span class="divider-text">OR</span>
+            </div>
+            
+            <!-- Social Login Buttons -->
+            <div class="social-buttons">
+                <!-- Google Login -->
+                <button class="btn btn-social" id="googleBtn">
+                    <i data-lucide="chrome" class="social-icon"></i>
+                    <span class="btn-text">Continue with Google</span>
+                </button>
+                
+                <!-- Phone Login -->
+                <button class="btn btn-social" id="phoneBtn">
+                    <i data-lucide="phone" class="social-icon"></i>
+                   <a href="index5.html" ><span class="btn-text">Continue with Phone</span></a>
+                </button>
+            </div>
+            
+            <!-- Decorative Elements -->
+            <div class="bg-decoration decoration-1"></div>
+            <div class="bg-decoration decoration-2"></div>
+            <div class="bg-decoration decoration-3"></div>
+        </div>
+        
+        <!-- Floating Particles -->
+        <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="script3.js"></script>
+</body>
+</html>
