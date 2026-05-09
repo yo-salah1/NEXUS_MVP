@@ -1,0 +1,98 @@
+pip install fastapi uvicorn python-multipart soundfile librosa
+
+python ser_fastapi.py
+
+curl http://localhost:8001/health
+
+http://localhost:8001/health
+http://localhost:8001/docs
+
+
+-------------------------------------------------------------------------------------
+
+
+
+.NET
+
+using var form = new MultipartFormDataContent();
+form.Add(new ByteArrayContent(audioBytes), "file", "audio.wav");
+var response = await httpClient.PostAsync("http://localhost:8001/predict", form);
+
+-------------------------------------------------------------------------------------
+
+React
+
+const form = new FormData();
+form.append("file", audioBlob, "audio.wav");
+const res = await fetch("http://localhost:8001/predict", {
+  method: "POST", body: form
+});
+const data = await res.json();
+
+-------------------------------------------------------------------------------------
+
+
+curl -X POST http://localhost:8001/predict -F "file=@C:\Users\Yousif\Desktop\test.wav"
+
+Get-ChildItem -Path C:\Users\Yousif -Recurse -Filter "*.wav" | Select-Object -First 5 FullName
+
+---------------------------------
+
+# اعمل folder جديد
+mkdir "D:\FCI - GP\YS_NEXUS\nexus_backend"
+
+# حط main.py و requirements.txt فيه
+# بعدين
+cd "D:\FCI - GP\YS_NEXUS\nexus_backend"
+
+# install
+pip install -r requirements.txt
+
+# run
+python main.py
+
+
+http://localhost:8080/health
+
+
+----------------
+
+cd "D:\FCI - GP\YS_NEXUS"
+conda activate nexus_env
+python ser_fastapi.py
+
+
+
+cd "D:\FCI - GP\YS_NEXUS\nexus_backend"
+conda activate nexus_env
+$env:ANTHROPIC_API_KEY = "sk-ant-..."
+python main.py
+
+
+cd "D:\FCI - GP\YS_NEXUS"
+conda activate nexus_env
+python ser_fastapi.py
+
+----------------
+
+to close 
+
+
+# اقفل port 8001
+netstat -ano | findstr :8001
+# هيطلعلك رقم في الآخر (PID) زي 12345
+taskkill /PID 12345 /F
+
+# اقفل port 8080
+netstat -ano | findstr :8080
+taskkill /PID <الرقم> /F
+
+
+
+
+cd "D:\FCI - GP\YS_NEXUS\Front"
+python -m http.server 3000
+
+
+
+http://localhost:3000/index9.html
